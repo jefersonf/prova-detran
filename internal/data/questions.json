@@ -1,0 +1,73 @@
+{
+    "questoes": [
+        {
+            "tema": "Sinalização",
+            "enunciado": "Diante da placa de advertência A-42a, o condutor deve estar alerta, pois a via à frente tem",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Entrada e saída de veículos."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Acesso a túnel."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Início de pista dupla."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Término de pista com divisória de sentido."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Sinalização",
+            "enunciado": "A placa de advertência A-4b, indica ao condutor",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Pista sinuosa."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Curva acentuada à esquerda."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Curva acentuada em S à direita."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Estreitamento de pista à direita."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Sinalização",
+            "enunciado": "A placa de sinalização R-32 indica",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Circulação exclusiva de ônibus."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Circulação proíbida de caminhões."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Circulação exclusiva de caminhões."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Circulação proíbida de ônibus."
+                }
+            ],
+            "correta": "A"
+        }
+    ]
+}

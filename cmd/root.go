@@ -12,7 +12,7 @@ var rootCmd = &cobra.Command{
 	Long: `Estude para o exame teórico do Detran por meio do Prova Detran,
 	uma ferramenta de linha de comando que gera simulados da prova 
 	a partir de questões reais e para todos os conteúdos abordados.
-	Documentação complete está disponível em github.com/jefersonf/prova-detran`,
+	Documentação completa está disponível em github.com/jefersonf/prova-detran`,
 }
 
 func Execute() {

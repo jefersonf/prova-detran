@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"strconv"
-	"strings"
 	"time"
 
 	"github.com/jefersonf/prova-detran/internal"
@@ -14,82 +12,124 @@ import (
 )
 
 var (
-	numQuestions        int
-	defaultNumQuestions int = 5
+	numQuestions int
 
-	mocktestDurationString           string
-	mocktestDurationInMinutes        int
-	defaultMocktestDurationInMinutes int = 5
+	mocktestDurationString    string
+	mocktestDurationInMinutes int = 5
 
-	message string = "tempo acabou!"
+	figures map[string]string
 )
-
-func init() {
-	simuladoCmd.Flags().IntVarP(&numQuestions, "questoes", "q", 5, "Número de questões do simulado")
-	simuladoCmd.Flags().StringVarP(&mocktestDurationString, "duracao", "d", "5m", "Duração do simulado em minutos")
-
-	rootCmd.AddCommand(simuladoCmd)
-}
 
 var simuladoCmd = &cobra.Command{
 	Use:   "simulado",
 	Short: "Inicia um novo simulado",
 	Long:  `Inicia um novo simulado da Prova do Detran`,
 	Run: func(_ *cobra.Command, _ []string) {
-		validateFlags()
+		readAndValidateParams()
 		startMocktest()
 	},
 }
 
-func startMocktest() {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(mocktestDurationInMinutes)*time.Second)
-	defer cancel()
-	defer func() {
-		<-ctx.Done()
-		log.Println(message)
-	}()
+type Status struct {
+	Message   string
+	Timestamp time.Time
+}
 
+func init() {
+	simuladoCmd.Flags().IntVarP(&numQuestions, "questoes", "q", 5, "Número de questões do simulado")
+	simuladoCmd.Flags().StringVarP(&mocktestDurationString, "duracao", "d", "5m", "Duração do simulado em minutos")
+	rootCmd.AddCommand(simuladoCmd)
+	loadFigures()
+}
+
+func startMocktest() {
 	mocktest, err := internal.NewMocktest(numQuestions)
+	status := make(chan Status)
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(mocktestDurationInMinutes)*time.Minute)
+	defer cancel()
+
 	if err != nil {
 		fmt.Println(err)
 		cancel()
 	}
 
-	go func() {
-		for _, question := range mocktest {
+	initialTime := time.Now()
+	go showQuestions(mocktest, status)
 
-			prompt := promptui.Select{
-				Label: question.Statement,
-				Items: question.FormattedAlternatives(),
-			}
-
-			_, _, err := prompt.Run()
-
-			if err != nil {
-				fmt.Printf("Prompt failed %v\n", err)
-				cancel()
-				return
-			}
-		}
-		cancel()
-		message = "fim do simulado"
-	}()
+	select {
+	case <-ctx.Done():
+		log.Println("Tempo acabou!")
+	case s := <-status:
+		log.Printf("%s, durou %.0f minutos\n", s.Message, s.Timestamp.Sub(initialTime).Minutes())
+	}
 }
 
-func validateFlags() {
-	if numQuestions < 1 || numQuestions >= 90 {
-		numQuestions = defaultNumQuestions
-		log.Printf("Número de questões deve ser maior que zero e no máximo 90, defindo número de questões para %d", numQuestions)
+func showQuestions(mocktest []internal.LabeledQuestion, status chan<- Status) {
+	log.Println("Simulado iniciou!")
+	for i, question := range mocktest {
+		printFigureIfAny(question.Statement)
+		prompt := promptui.Select{
+			Label: fmt.Sprintf("(Questão %0d) %s", i+1, question.Statement),
+			Items: question.FormattedAlternatives(i + 1),
+			Templates: &promptui.SelectTemplates{
+				Label:    "{{ . | bold | yellow }}:",
+				Active:   "{{ .Text | cyan }} ",
+				Inactive: "{{ .Text }}",
+				Selected: "{{ .QuestionID | bold | yellow }} {{ .Text | bold | blue }} ",
+			},
+		}
+		_, _, err := prompt.Run()
+		if err != nil {
+			status <- Status{Message: fmt.Sprintf("Falha ao carregar questão: %s\n", err), Timestamp: time.Now()}
+			return
+		}
+	}
+	status <- Status{Message: "Fim do simulado", Timestamp: time.Now()}
+}
+
+func printFigureIfAny(_ string) {
+	// f, err := os.Open("./out.text")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// defer f.Close()
+
+	// b, err := io.ReadAll(f)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+
+	// fmt.Println(string(b))
+}
+
+func loadFigures() {
+	figures = make(map[string]string)
+}
+
+func readAndValidateParams() {
+	promptNumQuestions := promptui.Prompt{
+		Label: "Número de questões",
+		Templates: &promptui.PromptTemplates{
+			Prompt:  "{{ . }} ",
+			Valid:   "{{ . | green }} ",
+			Invalid: "{{ . | red }} ",
+			Success: "{{ . | bold }} ",
+		},
+		Validate: validateNumberOfQuestions,
 	}
 
-	durationString := strings.Trim(mocktestDurationString, " mM")
-	var err error
-	mocktestDurationInMinutes, err = strconv.Atoi(durationString)
-	if err != nil {
-		mocktestDurationInMinutes = defaultMocktestDurationInMinutes
-		log.Printf("Duração inválida, definindo duração para %d minutos\n", mocktestDurationInMinutes)
+	promptDuration := promptui.Prompt{
+		Label: "Duração do simulado em minutos",
+		Templates: &promptui.PromptTemplates{
+			Prompt:  "{{ . }} ",
+			Valid:   "{{ . | green }} ",
+			Invalid: "{{ . | red }} ",
+			Success: "{{ . | bold }} ",
+		},
+		Validate: validateDuration,
 	}
 
-	log.Println("Número de questões:", numQuestions)
-	log.Println("Duração em minutes:", mocktestDurationInMinutes)
+	_, _ = promptNumQuestions.Run()
+	_, _ = promptDuration.Run()
 }

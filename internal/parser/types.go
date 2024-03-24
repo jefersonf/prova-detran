@@ -18,10 +18,16 @@ type Alternative struct {
 	Statement string `json:"alternativa"`
 }
 
-func (q *Question) FormattedAlternatives() []string {
-	formatted := make([]string, len(q.Alternatives))
+type PromptQuestion struct {
+	Text       string
+	QuestionID string
+}
+
+func (q *Question) FormattedAlternatives(questionID int) []PromptQuestion {
+	formatted := make([]PromptQuestion, len(q.Alternatives))
 	for i, a := range q.Alternatives {
-		formatted[i] = fmt.Sprintf("[%s] %s", a.Label, a.Statement)
+		formatted[i].Text = fmt.Sprintf("[%s] %s", a.Label, a.Statement)
+		formatted[i].QuestionID = fmt.Sprintf("Questão %0d", questionID)
 	}
 	return formatted
 }

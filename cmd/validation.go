@@ -32,5 +32,5 @@ func validateDuration(input string) error {
 }
 
 func indexToOptionLabel(offset int) string {
-	return string('A' + offset)
+	return string(rune('A' + offset))
 }

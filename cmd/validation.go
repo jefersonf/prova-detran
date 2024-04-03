@@ -30,3 +30,7 @@ func validateDuration(input string) error {
 	}
 	return nil
 }
+
+func indexToOptionLabel(offset int) string {
+	return string('A' + offset)
+}

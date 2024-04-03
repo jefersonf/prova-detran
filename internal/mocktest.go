@@ -3,19 +3,17 @@ package internal
 import (
 	"math/rand"
 	"os"
-
-	"github.com/jefersonf/prova-detran/internal/parser"
 )
 
 var (
 	questionSetFile = "./internal/data/questions.json"
 
-	testSet *parser.QuestionSet
+	testSet *QuestionSet
 )
 
 type LabeledQuestion struct {
 	Label int
-	parser.Question
+	Question
 }
 
 func NewMocktest(numQuestions int) ([]LabeledQuestion, error) {
@@ -26,7 +24,7 @@ func NewMocktest(numQuestions int) ([]LabeledQuestion, error) {
 	}
 	defer jsonFile.Close()
 
-	testSet, err = parser.ParseQuestionSet(jsonFile)
+	testSet, err = ParseQuestionSet(jsonFile)
 	if err != nil {
 		return []LabeledQuestion{}, err
 	}

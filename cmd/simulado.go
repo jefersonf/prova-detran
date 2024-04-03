@@ -67,6 +67,7 @@ func startMocktest() {
 
 func showQuestions(mocktest []internal.LabeledQuestion, status chan<- Status) {
 	log.Println("Simulado iniciou!")
+	rightAnwsers := 0
 	for i, question := range mocktest {
 		printFigureIfAny(question.Statement)
 		prompt := promptui.Select{
@@ -79,13 +80,16 @@ func showQuestions(mocktest []internal.LabeledQuestion, status chan<- Status) {
 				Selected: "{{ .QuestionID | bold | yellow }} {{ .Text | bold | blue }} ",
 			},
 		}
-		_, _, err := prompt.Run()
+		choiceIndex, _, err := prompt.Run()
+		if indexToOptionLabel(choiceIndex) == question.RightAnswer {
+			rightAnwsers += 1
+		}
 		if err != nil {
 			status <- Status{Message: fmt.Sprintf("Falha ao carregar questão: %s\n", err), Timestamp: time.Now()}
 			return
 		}
 	}
-	status <- Status{Message: "Fim do simulado", Timestamp: time.Now()}
+	status <- Status{Message: fmt.Sprintf("Fim do simulado. Acertos %d/%d", rightAnwsers, len(mocktest)), Timestamp: time.Now()}
 }
 
 func printFigureIfAny(_ string) {

@@ -18,7 +18,7 @@ type LabeledQuestion struct {
 
 type Mocktest []LabeledQuestion
 
-func NewMocktest(numQuestions int) (Mocktest, error) {
+func NewMocktest(numberOfQuestions int) (Mocktest, error) {
 
 	jsonFile, err := os.Open(questionSetFile)
 	if err != nil {
@@ -41,15 +41,15 @@ func NewMocktest(numQuestions int) (Mocktest, error) {
 		ids[i], ids[j] = ids[j], ids[i]
 	}
 
-	qset := make(Mocktest, min(numQuestions, len(testSet.Questions)))
-	for i := range qset {
+	questionSet := make(Mocktest, min(numberOfQuestions, len(testSet.Questions)))
+	for i := range questionSet {
 		qID := ids[i] - 1
-		qset[i].Label = i + 1
-		qset[i].Topic = testSet.Questions[qID].Topic
-		qset[i].Statement = testSet.Questions[qID].Statement
-		qset[i].Alternatives = testSet.Questions[qID].Alternatives
-		qset[i].RightAnswer = testSet.Questions[qID].RightAnswer
+		questionSet[i].Label = i + 1
+		questionSet[i].Topic = testSet.Questions[qID].Topic
+		questionSet[i].Statement = testSet.Questions[qID].Statement
+		questionSet[i].Alternatives = testSet.Questions[qID].Alternatives
+		questionSet[i].RightAnswer = testSet.Questions[qID].RightAnswer
 	}
 
-	return qset, nil
+	return questionSet, nil
 }

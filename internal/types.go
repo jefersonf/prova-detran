@@ -15,7 +15,7 @@ type Question struct {
 	RightAnswer  string        `json:"correta"`
 }
 
-/ Alternative represents a prompt question option.
+// Alternative represents a prompt question option.
 type Alternative struct {
 	Label     string `json:"opcao"`
 	Statement string `json:"alternativa"`

@@ -7,7 +7,7 @@ import (
 	"github.com/jefersonf/prova-detran/internal"
 )
 
-type Repository interface {
+type RepositoryImp interface {
 	SaveMocktest(internal.Mocktest) error
 	GetMocktests(...FilterOption) ([]internal.Mocktest, error)
 }

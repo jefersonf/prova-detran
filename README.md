@@ -52,6 +52,14 @@ Flags:
 
 ![exemplo de simulado](/sample-output.png)
 
+## Banco de questões
+
+As questões presentes nessa ferramenta foram extraídas de livros e materiaos de apoio que obtive acesso por meio do CFC (Centro de Formação de Condutores) a qual iniciei meu processo ruma a primeira habilitação. Além claro, de banco de questões públicas alinhadas ao formato do exame do Detran.
+
+As questões possuem quatro alternativas cada e podem ou não trazer imagens¹ de apoio como placas de sinalização. 
+
+¹Dada a limitação de apresetação de imagens diretamente no terminal foi utilizado a representação em [Braille Unicode](https://unicode.org/charts/nameslist/c_2800.html) quando possível.
+
 ## Mini-FAQ
 
 >As questões seguem o formato do exame oficial?

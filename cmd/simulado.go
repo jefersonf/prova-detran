@@ -1,9 +1,12 @@
 package cmd
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"log"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/jefersonf/prova-detran/internal"
@@ -31,8 +34,10 @@ var simuladoCmd = &cobra.Command{
 }
 
 type Status struct {
-	Message   string
-	Timestamp time.Time
+	Message        string
+	CorrectAnswers int
+	TotalQuestions int
+	Timestamp      time.Time
 }
 
 func init() {
@@ -53,16 +58,34 @@ func startMocktest() {
 		fmt.Println(err)
 		cancel()
 	}
-
 	initialTime := time.Now()
 	go showQuestions(mocktest, status)
 
+	sessionSummary := func(s *Status) {
+		log.Printf("%s, durou %.0f minutos\n", s.Message, s.Timestamp.Sub(initialTime).Minutes())
+	}
+
+	var s Status
 	select {
 	case <-ctx.Done():
 		log.Println("Tempo acabou!")
-	case s := <-status:
-		log.Printf("%s, durou %.0f minutos\n", s.Message, s.Timestamp.Sub(initialTime).Minutes())
+		break
+	case s = <-status:
+		sessionSummary(&s)
 	}
+
+	saveResult(&s)
+}
+
+func saveResult(s *Status) {
+	file, err := os.OpenFile("./data/results.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("Could not store results")
+		return
+	}
+	defer file.Close()
+	resultLog := fmt.Sprintf("%v correct answers: %v/%v\n", time.Now().Format(time.DateTime), s.CorrectAnswers, s.TotalQuestions)
+	_, _ = file.WriteString(resultLog)
 }
 
 func showQuestions(mocktest []internal.LabeledQuestion, status chan<- Status) {
@@ -90,31 +113,49 @@ func showQuestions(mocktest []internal.LabeledQuestion, status chan<- Status) {
 		}
 	}
 	correctAnswersPercentage := float32(correctAnwsers) / float32(len(mocktest)) * 100.
-	status <- Status{Message: fmt.Sprintf("Fim do simulado. Acertos %d/%d (%.0f%%)", correctAnwsers, len(mocktest), correctAnswersPercentage), Timestamp: time.Now()}
+	status <- Status{
+		Message:        fmt.Sprintf("Fim do simulado. Acertos %d/%d (%.0f%%)", correctAnwsers, len(mocktest), correctAnswersPercentage),
+		CorrectAnswers: correctAnwsers,
+		TotalQuestions: len(mocktest),
+		Timestamp:      time.Now()}
 }
 
-func printFigureIfAny(_ string) {
-	// f, err := os.Open("./out.text")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// defer f.Close()
-
-	// b, err := io.ReadAll(f)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-
-	// fmt.Println(string(b))
+func printFigureIfAny(questionStatement string) {
+	words := strings.Split(questionStatement, " ")
+	for _, w := range words {
+		if len(w) < 2 {
+			continue
+		}
+		if fig, exists := figures[strings.Trim(w, " ,.:;()[]'{}\"")]; exists {
+			fmt.Println(fig)
+		}
+	}
 }
 
 func loadFigures() {
 	figures = make(map[string]string)
+	file, err := os.Open("./plates_in_braille_format.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	lines := make([]string, 0, 25)
+	for scanner.Scan() {
+		r := scanner.Text()
+		if strings.HasPrefix(r, "#") {
+			figures[lines[0]] = strings.Join(lines[1:], "\n")
+			lines = lines[:0]
+			lines = append(lines, r[1:])
+		} else {
+			lines = append(lines, r)
+		}
+	}
 }
 
 func readAndValidateParams() {
 	promptNumQuestions := promptui.Prompt{
-		Label: "Número de questões",
+		Label: "Número de questões:",
 		Templates: &promptui.PromptTemplates{
 			Prompt:  "{{ . }} ",
 			Valid:   "{{ . | green }} ",
@@ -125,7 +166,7 @@ func readAndValidateParams() {
 	}
 
 	promptDuration := promptui.Prompt{
-		Label: "Duração do simulado em minutos",
+		Label: "Duração do simulado em minutos:",
 		Templates: &promptui.PromptTemplates{
 			Prompt:  "{{ . }} ",
 			Valid:   "{{ . | green }} ",

@@ -18,7 +18,7 @@ var resultadoCmd = &cobra.Command{
 	Run: func(_ *cobra.Command, _ []string) {
 		bytes, err := os.ReadFile("./data/results.txt")
 		if err != nil {
-			fmt.Println("Nenhum resulta ainda.")
+			fmt.Println("Nenhum resultado ainda.")
 		} else {
 			fmt.Println(string(bytes))
 		}

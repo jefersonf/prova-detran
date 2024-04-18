@@ -74,9 +74,9 @@ Flags:
 
 >**Depende! Nesses casos uma representação gráfica aproximada é utilizada no próprio terminal, devido as limitações comuns a uma CLI**
 
-## Como contruir
+## Como contribuir
 
-É possível contruir de duas formas:
+É possível contribuir de duas formas:
 
 1. Adicionando questões ao banco de questões da CLI. (Checar o formato do [banco de questões](#banco-de-questoes))
 2. Melhorando e/ou evoluindo o código! Clone e crie uma issue, PRs são bem-vindos (_There's always room for improvements_).

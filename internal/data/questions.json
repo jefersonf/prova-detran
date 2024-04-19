@@ -68,6 +68,236 @@
                 }
             ],
             "correta": "A"
+        },
+        {
+            "tema": "Sinalização",
+            "enunciado": "A placa de advertência A-32b indica",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Fiscalização por agente de trânsito."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Obras e trabalhadores na pista."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Passagem sinalizada de pedestres."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Alto índice de atropelamento."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Sinalização",
+            "enunciado": "A placa de sinalização R-24b indica",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Início de trecho em declive na via."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Passagem obrigatória a direita."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Sentido proibido de circulação na via."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Conversão à direita no cruzamento."
+                }
+            ],
+            "correta": "B"
+        },
+        {
+            "tema": "Sinalização",
+            "enunciado": "Diante da placa de regulamentação R-4a, o condutor",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Deve virar à esquerda."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Não deve virar à esquerda."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Não deve virar à direita."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Deve virar à direita."
+                }
+            ],
+            "correta": "B"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "Os requisitos necessários, dentre outros, para obter a Carteira Nacional de Habilitação (CNH) são",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Ter concluído o Ensido Médio."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Ter concluído o Ensino Fundamental."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Saber ler e escrever."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Estar matriculado no Ensino Fundamental."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "O embarque e o desenbarque de passageiros devem ocorrer (Art. 49 do CTB)",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Do lado esquerdo da via."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "De qualquer lado do veículo."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Sempre do lado da rua."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Sempre do lado da calçada."
+                }
+            ],
+            "correta": "D"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "As vias rurais abertas à circulação de veículos classificam-se em",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Via de trânsito rápido, via arterial, via coletora, via local, rodovias e estradas."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Via de trânsito rápido, via arterial, via coletora e via local."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Via arterial, via coletora e via local."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Rodovias e estradas."
+                }
+            ],
+            "correta": "D"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "A velocidade máxima permitida em vias coletoras nas quais não exista sinalização regulamentadora é de",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "40 km/h."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "60 km/h."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "20 km/h."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "30 km/h."
+                }
+            ],
+            "correta": "A"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "Segundo a legislação de trânsito, é proibido acionar a buzina no período compreendido",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Entre 24h00 e 6h00."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Entre 22h00 e 7h00."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Entre 21h00 e 6h00."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Entre 22h00 e 6h00."
+                }
+            ],
+            "correta": "D"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "As pessoas que possuem habilitação e tenham mais de 70 anos de idade, deverão renovar o exame de aptidão física e mental (médico)",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "De 5 em 5 anos."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "De 2 em 2 anos."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "De 3 3m 3 anos."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "De 4 em 4 anos."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "As vias urbanas abertas à circulação, de acordo com sua utilização, classificam-se em",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "De trânsito rápido, arteriais, coletoras e locais."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "De trânsito rápido, radiais, arteriais e coletoras."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Intermunicipais, arteriais, coletoras e locais."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Radiais, arteriais, coletoras e locais."
+                }
+            ],
+            "correta": "A"
         }
     ]
 }

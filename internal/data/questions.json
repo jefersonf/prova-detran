@@ -298,6 +298,144 @@
                 }
             ],
             "correta": "A"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "Em que velocidade mínima é permitida ao condutor trafegar com automóvel em rodovia de pista dupla, não sinalizada?",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "50 km/h."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "65 km/h."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "55 km/h."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "60 km/h."
+                }
+            ],
+            "correta": "C"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "A via que se destina a receber e distribuir o fluxo das vias de trânsito rápido ou arterial, possibilitando a circulação em regiões urbanas, é definida como",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Via arterial."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Via local."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Via de trânsito rápido."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Via coletora."
+                }
+            ],
+            "correta": "D"
+        },
+        {
+            "tema": "Infrações",
+            "enunciado": "Uma das circunstâncias que agravam as penalidades dos crimes de trânsito é dirigir",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Sem estar habilitado."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Com a Carteira Nacional de Habilitação vencida."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Com apenas uma das mãos ao voltante."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Sem que o veículo esteja devidamente licenciado."
+                }
+            ],
+            "correta": "A"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "Para um condutor dirigir veículos motorizados, utilizados em transporte de carga, cujo peso bruto total exceda a 3500 Kg, a habilitação exigida corresponde à",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Categoria C."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Categoria B."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Categoria E."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Categoria D."
+                }
+            ],
+            "correta": "A"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "O condutor infrator será submetido a curso de reciclagem quando",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Cometer qualquer infração grave."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "For multado por ultrapassar a velocidade máxima permitida."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Estacionar em local sinalizado como proibido."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "For suspenso do seu direito de dirigir."
+                }
+            ],
+            "correta": "D"
+        },
+        {
+            "tema": "Legislação",
+            "enunciado": "A pessoa que pretende habilitar-se na categoria E deverá preencher os seguintes requisitos",
+            "alternativas": [
+                {
+                    "opcao": "A",
+                    "alternativa": "Não ter cometido nenhuma infração grave ou gravíssima durante os últimos 6 meses, nem infração média durante os últimos 12 meses."
+                },
+                {
+                    "opcao": "B",
+                    "alternativa": "Não ter cometido mais de uma infração gravíssima nos últimos 12 (doze) meses."
+                },
+                {
+                    "opcao": "C",
+                    "alternativa": "Não ter cometido nenhuma infração grave ou gravíssima ou ser reincidente em infrações médias durante os últimos 6 meses."
+                },
+                {
+                    "opcao": "D",
+                    "alternativa": "Não ter cometido nenhuma infração grave ou gravíssima ou ser reincidente em infrações médias ou ainda ter cometido quatro  infrações leves durante os últimos 12 meses."
+                }
+            ],
+            "correta": "B"
         }
     ]
 }

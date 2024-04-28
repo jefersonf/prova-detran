@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -14,6 +15,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	warnTestSessionTimeout = "Tempo acabou!"
+)
+
 var (
 	numQuestions int
 
@@ -21,6 +26,8 @@ var (
 	mocktestDurationInMinutes int = 5
 
 	figures map[string]string
+
+	ErrResultsNotSaved = errors.New("Could not store results")
 )
 
 var simuladoCmd = &cobra.Command{
@@ -68,7 +75,7 @@ func startMocktest() {
 	var s Status
 	select {
 	case <-ctx.Done():
-		log.Println("Tempo acabou!")
+		log.Println(warnTestSessionTimeout)
 		break
 	case s = <-status:
 		sessionSummary(&s)
@@ -80,7 +87,7 @@ func startMocktest() {
 func saveResult(s *Status) {
 	file, err := os.OpenFile("./data/results.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
-		fmt.Println("Could not store results")
+		fmt.Println(ErrResultsNotSaved)
 		return
 	}
 	defer file.Close()

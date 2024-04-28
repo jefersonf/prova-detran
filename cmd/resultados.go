@@ -7,6 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	warnNoResultsToShow = "Nenhum resultado para mostrar"
+)
+
 func init() {
 	rootCmd.AddCommand(resultadoCmd)
 }
@@ -18,7 +22,7 @@ var resultadoCmd = &cobra.Command{
 	Run: func(_ *cobra.Command, _ []string) {
 		bytes, err := os.ReadFile("./data/results.txt")
 		if err != nil {
-			fmt.Println("Nenhum resultado ainda.")
+			fmt.Println(warnNoResultsToShow)
 		} else {
 			fmt.Println(string(bytes))
 		}

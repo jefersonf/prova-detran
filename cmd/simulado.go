@@ -17,6 +17,7 @@ import (
 
 const (
 	warnTestSessionTimeout = "Tempo acabou!"
+	resultsFilePath        = "./data/results.txt"
 )
 
 var (
@@ -85,7 +86,7 @@ func startMocktest() {
 }
 
 func saveResult(s *Status) {
-	file, err := os.OpenFile("./data/results.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile(resultsFilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(ErrResultsNotSaved)
 		return

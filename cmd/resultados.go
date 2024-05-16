@@ -20,7 +20,7 @@ var resultadoCmd = &cobra.Command{
 	Short: "Mostra o resultado do simulado",
 	Long:  `Mostra o resultado do último simulado realizado`,
 	Run: func(_ *cobra.Command, _ []string) {
-		bytes, err := os.ReadFile("./data/results.txt")
+		bytes, err := os.ReadFile(resultsFilePath)
 		if err != nil {
 			fmt.Println(warnNoResultsToShow)
 		} else {

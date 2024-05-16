@@ -15,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Short: "Imprime a versão do Prova Detran",
 	Long:  `Imprime a versão do Prova Detran, uma CLI para realização de simulados da prova do Detran`,
 	Run: func(_ *cobra.Command, _ []string) {
-		fmt.Println("Prova Detran v0.3")
+		fmt.Println("Prova Detran v0.3.1")
 	},
 }

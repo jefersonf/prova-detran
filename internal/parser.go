@@ -13,14 +13,14 @@ func ParseQuestionSet(reader io.Reader) (*QuestionSet, error) {
 	var qset QuestionSet
 	bytes, err := io.ReadAll(reader)
 	if err != nil {
-		return &qset, withCtx(err)
+		return &qset, withContext(err)
 	}
 	if err := json.Unmarshal(bytes, &qset); err != nil {
-		return &qset, withCtx(err)
+		return &qset, withContext(err)
 	}
 	return &qset, nil
 }
 
-func withCtx(err error) error {
+func withContext(err error) error {
 	return fmt.Errorf("%w: %w", errContext, err)
 }

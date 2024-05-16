@@ -2,12 +2,12 @@ package internal
 
 import "fmt"
 
-// QuestionSet ...
+// QuestionSet holds a slice of questions.
 type QuestionSet struct {
 	Questions []Question `json:"questoes"`
 }
 
-// Question ...
+// Question represents an exam question.
 type Question struct {
 	Topic        string        `json:"tema"`
 	Statement    string        `json:"enunciado"`

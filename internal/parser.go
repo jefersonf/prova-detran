@@ -10,15 +10,15 @@ import (
 var errContext = errors.New("parser error")
 
 func ParseQuestionSet(reader io.Reader) (*QuestionSet, error) {
-	var qset QuestionSet
+	var questionSet QuestionSet
 	bytes, err := io.ReadAll(reader)
 	if err != nil {
-		return &qset, withContext(err)
+		return &questionSet, withContext(err)
 	}
-	if err := json.Unmarshal(bytes, &qset); err != nil {
-		return &qset, withContext(err)
+	if err := json.Unmarshal(bytes, &questionSet); err != nil {
+		return &questionSet, withContext(err)
 	}
-	return &qset, nil
+	return &questionSet, nil
 }
 
 func withContext(err error) error {

@@ -22,7 +22,7 @@ type Filter struct {
 func FromDate(date time.Time) FilterOption {
 	return func(f *Filter) error {
 		if date.After(time.Now()) {
-			return errors.New("from date must be a date before the mocktest realization")
+			return errors.New("fromDate must be a date before the mocktest realization")
 		}
 		f.fromDate = date
 		return nil
